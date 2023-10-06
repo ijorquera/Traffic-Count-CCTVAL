@@ -39,13 +39,30 @@
 
             `git clone https://github.com/KaiyangZhou/deep-person-reid.git`
 
-    4. Install dependencies:
+    4. (Linux) Install Traffic-count-cctval dependencies:
 
-        1. Install Traffic-count-cctval dependencies:
+        `pip install --no-cache-dir -r Traffic-Count-CCTVAL/requirements.txt`
 
-            `pip install --no-cache-dir -r Traffic-Count-CCTVAL/requirements.txt`
+        - For linux, just requirements is enough since it will auto-detect wether there is a gpu with cuda support or not
+
+    5. (Windows) Install Traffic-count-cctval dependencies:
+
+        1. Install requirements:
+
+            `pip install --no-cache-dir -r Traffic-Count-CCTVAL/requirements-windows.txt`
+
         
-        2. Install torchreid:
+        2. Install [pytorch](https://pytorch.org/get-started/locally/) (check on [pytorch](https://pytorch.org/get-started/locally/) for the right command for your system)
+
+            - For latest version with cuda 12.1 support on windows:
+            
+                `pip install --no-cache-dir torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu121`
+            
+            - For latest version with cpu only on windows:
+
+                `pip install torch torchvision torchaudio`
+
+        3. Install torchreid:
 
             `cd deep-person-reid`
 
