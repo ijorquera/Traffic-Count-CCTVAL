@@ -33,7 +33,7 @@
 
         1. Traffic-count-cctval:
 
-            `git clone https://github.com/jeedorsa/Traffic-Count-CCTVAL.git`
+            `git clone https://github.com/ijorquera/Traffic-Count-CCTVAL`
         
         2. torchreid:
 
