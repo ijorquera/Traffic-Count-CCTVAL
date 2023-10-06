@@ -62,13 +62,13 @@
 
                 `pip install torch torchvision torchaudio`
 
-        3. Install torchreid:
+    6. Install torchreid:
 
-            `cd deep-person-reid`
+        `cd deep-person-reid`
 
-            `python setup.py develop`
+        `python setup.py develop`
 
-            `cd ..`
+        `cd ..`
     
 3. Traffic-count-cctval test:
 
