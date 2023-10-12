@@ -242,25 +242,28 @@ def detect(opt):
                 roi = im0[-size1-10:-10, -size2-10:-10]
                 roi[np.where(mask)] = 0
                 roi += logo
-                color = (0, 255, 0)
-                start_point = (0, h - 350)
-                end_point = (int(w/2) - 50, h - 350)
-                cv2.line(im0, start_point, end_point, color, thickness=2)
-                org = (150, 150)
-                font = cv2.FONT_HERSHEY_COMPLEX
-                fontScale = 3
-                thickness = 3
-                cv2.putText(im0, str(count), org, font, fontScale, color, thickness, cv2.LINE_AA)
 
-                color = (255, 0, 0)
-                start_point = (int(w/2) + 50, h - 350)
-                end_point = (w, h - 350)
-                cv2.line(im0, start_point, end_point, color, thickness=2)
-                org = (w - 150, 150)
-                font = cv2.FONT_HERSHEY_COMPLEX
-                fontScale = 3
-                thickness = 3
-                cv2.putText(im0, str(count2), org, font, fontScale, color, thickness, cv2.LINE_AA)
+                if opt.hcount:
+                    color = (0, 255, 0)
+                    start_point = (0, h - 350)
+                    end_point = (int(w/2) - 50, h - 350)
+                    cv2.line(im0, start_point, end_point, color, thickness=2)
+                    org = (150, 150)
+                    font = cv2.FONT_HERSHEY_COMPLEX
+                    fontScale = 3
+                    thickness = 3
+                    cv2.putText(im0, str(count), org, font, fontScale, color, thickness, cv2.LINE_AA)
+
+                    color = (255, 0, 0)
+                    start_point = (int(w/2) + 50, h - 350)
+                    end_point = (w, h - 350)
+                    cv2.line(im0, start_point, end_point, color, thickness=2)
+                    org = (w - 150, 150)
+                    font = cv2.FONT_HERSHEY_COMPLEX
+                    fontScale = 3
+                    thickness = 3
+                    cv2.putText(im0, str(count2), org, font, fontScale, color, thickness, cv2.LINE_AA)
+
                 cv2.imshow(str(p), im0)
                 cv2.waitKey(1)  # 1 millisecond
 
@@ -324,6 +327,7 @@ def count_obj(box, w, h, id):
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     parser.add_argument('--yolo_model', nargs='+', type=str, default='yolov5m.pt', help='model.pt path(s)')
+    parser.add_argument('--hcount', action='store_true', default=False, help='horizontal lines to count objects')  # file/folder, 0 for webcam
     parser.add_argument('--deep_sort_model', type=str, default='osnet_ibn_x1_0_MSMT17')
     parser.add_argument('--source', type=str, default='0', help='source')  # file/folder, 0 for webcam
     parser.add_argument('--output', type=str, default='inference/output', help='output folder')  # output folder
