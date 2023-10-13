@@ -296,17 +296,30 @@ class DetectMultiBackend(nn.Module):
         super().__init__()
         w = str(weights[0] if isinstance(weights, list) else weights)
         pt, jit, onnx, xml, engine, coreml, saved_model, pb, tflite, edgetpu, tfjs = self.model_type(w)  # get backend
+        # print(f"pt: {pt}, jit: {jit}, onnx: {onnx}, xml: {xml}, engine: {engine}, coreml: {coreml}, saved_model: {saved_model}, pb: {pb}, tflite: {tflite}, edgetpu: {edgetpu}, tfjs: {tfjs}")
         stride, names = 32, [f'class{i}' for i in range(1000)]  # assign defaults
         w = attempt_download(w)  # download if not local
         fp16 &= (pt or jit or onnx or engine) and device.type != 'cpu'  # FP16
         if data:  # data.yaml path (optional)
             with open(data, errors='ignore') as f:
+                # print(f"data: {data}")
                 names = yaml.safe_load(f)['names']  # class names
 
         if pt:  # PyTorch
             model = attempt_load(weights if isinstance(weights, list) else w, map_location=device)
             stride = max(int(model.stride.max()), 32)  # model stride
+            # print(f"old names: {model.names}")
             names = model.module.names if hasattr(model, 'module') else model.names  # get class names
+            # print(f"new names: {names}")
+            names = ['persona', 'bicicleta', 'auto', 'moto', 'avion', 'micro', 'tren', 'camion', 'bote', 'semaforo',
+            'fire hydrant', 'stop sign', 'parking meter', 'bench', 'bird', 'cat', 'dog', 'horse', 'sheep', 'cow',
+            'elephant', 'bear', 'zebra', 'giraffe', 'backpack', 'umbrella', 'handbag', 'tie', 'suitcase', 'frisbee',
+            'skis', 'snowboard', 'sports ball', 'kite', 'baseball bat', 'baseball glove', 'skateboard', 'surfboard',
+            'tennis racket', 'bottle', 'wine glass', 'cup', 'fork', 'knife', 'spoon', 'bowl', 'banana', 'apple',
+            'sandwich', 'orange', 'broccoli', 'carrot', 'hot dog', 'pizza', 'donut', 'cake', 'chair', 'couch',
+            'potted plant', 'bed', 'dining table', 'toilet', 'tv', 'laptop', 'mouse', 'remote', 'keyboard', 'cell phone',
+            'microwave', 'oven', 'toaster', 'sink', 'refrigerator', 'book', 'clock', 'vase', 'scissors', 'teddy bear',
+            'hair drier', 'toothbrush']  # class names
             model.half() if fp16 else model.float()
             self.model = model  # explicitly assign for to(), cpu(), cuda(), half()
         elif jit:  # TorchScript
@@ -366,6 +379,7 @@ class DetectMultiBackend(nn.Module):
             import coremltools as ct
             model = ct.models.MLModel(w)
         else:  # TensorFlow (SavedModel, GraphDef, Lite, Edge TPU)
+            # print("aqui!")
             if saved_model:  # SavedModel
                 LOGGER.info(f'Loading {w} for TensorFlow SavedModel inference...')
                 import tensorflow as tf
