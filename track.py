@@ -212,10 +212,11 @@ def detect(opt):
                                                                bbox_top, bbox_w, bbox_h, -1, -1, -1, i))
 
                             c = int(cls)  # integer class
-                            label = f'{id} {names[c]} {conf:.2f}'                            
-                            # Write results in an interpretable file
-                            with open(txt_path + '_interpretable.csv', 'a') as f:
-                                f.write(f"{i},{frame_idx + 1},{label},{id},{bbox_left},{bbox_top},{bbox_w},{bbox_h}\n")
+                            if int(c) < len(names) :
+                                label = f'{id} {names[c]} {conf:.2f}'                            
+                                # Write results in an interpretable file
+                                with open(txt_path + '_interpretable.csv', 'a') as f:
+                                    f.write(f"{i},{frame_idx + 1},{label},{id},{bbox_left},{bbox_top},{bbox_w},{bbox_h}\n")
                                 
                         if save_vid or save_crop or show_vid:  # Add bbox to image
                             c = int(cls)  # integer class
