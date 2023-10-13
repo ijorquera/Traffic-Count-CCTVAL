@@ -178,7 +178,8 @@ def detect(opt):
                 # Print results
                 for c in det[:, -1].unique():
                     n = (det[:, -1] == c).sum()  # detections per class
-                    s += f"{n} {names[int(c)]}{'s' * (n > 1)}, "  # add to string
+                    if int(c) < len(names) :
+                        s += f"{n} {names[int(c)]}{'s' * (n > 1)}, "  # add to string
 
                 xywhs = xyxy2xywh(det[:, 0:4])
                 confs = det[:, 4]
@@ -219,11 +220,12 @@ def detect(opt):
                         if save_vid or save_crop or show_vid:  # Add bbox to image
                             c = int(cls)  # integer class
                             # label = f'{id} {names[c]} {conf:.2f}'
-                            label = f'{names[c]}'
-                            annotator.box_label(bboxes, label, color=colors(c, True))
-                            if save_crop:
-                                txt_file_name = txt_file_name if (isinstance(path, list) and len(path) > 1) else ''
-                                save_one_box(bboxes, imc, file=save_dir / 'crops' / txt_file_name / names[c] / f'{id}' / f'{p.stem}.jpg', BGR=True)
+                            if int(c) < len(names) :
+                                label = f'{names[c]}'
+                                annotator.box_label(bboxes, label, color=colors(c, True))
+                                if save_crop:
+                                    txt_file_name = txt_file_name if (isinstance(path, list) and len(path) > 1) else ''
+                                    save_one_box(bboxes, imc, file=save_dir / 'crops' / txt_file_name / names[c] / f'{id}' / f'{p.stem}.jpg', BGR=True)
 
                 LOGGER.info(f'{s}Done. YOLO:({t3 - t2:.3f}s), DeepSort:({t5 - t4:.3f}s)')
 

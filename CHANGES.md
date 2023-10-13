@@ -20,7 +20,7 @@
 ---
 
 # Pendiente:
-
+- Revisar contador, eliminar clases
 - Formato:
     - Ver el tema de las lineas horizontales de conteo
     - Dejar las etiquetas en español
