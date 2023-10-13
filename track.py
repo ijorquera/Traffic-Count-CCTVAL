@@ -218,7 +218,8 @@ def detect(opt):
                                 
                         if save_vid or save_crop or show_vid:  # Add bbox to image
                             c = int(cls)  # integer class
-                            label = f'{id} {names[c]} {conf:.2f}'
+                            # label = f'{id} {names[c]} {conf:.2f}'
+                            label = f'{names[c]}'
                             annotator.box_label(bboxes, label, color=colors(c, True))
                             if save_crop:
                                 txt_file_name = txt_file_name if (isinstance(path, list) and len(path) > 1) else ''

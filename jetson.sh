@@ -1,7 +1,7 @@
 sudo apt-get update
-sudo apt-get upgrade
+sudo apt-get install -y liblapack-dev libblas-dev gfortran libfreetype6-dev libopenblas-base libopenmpi-dev libjpeg-dev zlib1g-dev
+sudo apt-get install -y build-essential git curl cmake python3.8
 
-sudo apt-get install build-essential git curl cmake python3.8
 # sudo apt-get install python3-pip
 curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
 python3.8 get-pip.py
