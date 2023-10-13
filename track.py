@@ -269,25 +269,27 @@ def detect(opt):
 
             # Save results (image with detections)
             if save_vid:
-                color = (0, 255, 0)
-                start_point = (0, h - 350)
-                end_point = (int(w/2) - 50, h - 350)
-                cv2.line(im0, start_point, end_point, color, thickness=2)
-                org = (150, 150)
-                font = cv2.FONT_HERSHEY_COMPLEX
-                fontScale = 3
-                thickness = 3
-                cv2.putText(im0, str(count), org, font, fontScale, color, thickness, cv2.LINE_AA)
+                if opt.hcount:
 
-                color = (255, 0, 0)
-                start_point = (int(w/2) + 50, h - 350)
-                end_point = (w, h - 350)
-                cv2.line(im0, start_point, end_point, color, thickness=2)
-                org = (w - 150, 150)
-                font = cv2.FONT_HERSHEY_COMPLEX
-                fontScale = 3
-                thickness = 3
-                cv2.putText(im0, str(count2), org, font, fontScale, color, thickness, cv2.LINE_AA)
+                    color = (0, 255, 0)
+                    start_point = (0, h - 350)
+                    end_point = (int(w/2) - 50, h - 350)
+                    cv2.line(im0, start_point, end_point, color, thickness=2)
+                    org = (150, 150)
+                    font = cv2.FONT_HERSHEY_COMPLEX
+                    fontScale = 3
+                    thickness = 3
+                    cv2.putText(im0, str(count), org, font, fontScale, color, thickness, cv2.LINE_AA)
+
+                    color = (255, 0, 0)
+                    start_point = (int(w/2) + 50, h - 350)
+                    end_point = (w, h - 350)
+                    cv2.line(im0, start_point, end_point, color, thickness=2)
+                    org = (w - 150, 150)
+                    font = cv2.FONT_HERSHEY_COMPLEX
+                    fontScale = 3
+                    thickness = 3
+                    cv2.putText(im0, str(count2), org, font, fontScale, color, thickness, cv2.LINE_AA)
 
                 if vid_path[i] != save_path:  # new video
                     vid_path[i] = save_path
