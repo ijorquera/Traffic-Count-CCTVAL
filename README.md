@@ -39,17 +39,23 @@
 
             `git clone https://github.com/KaiyangZhou/deep-person-reid.git`
 
-    4. (Linux) Install Traffic-count-cctval dependencies:
+    4. (Jetson-nano) Install Traffic-count-cctval dependencies:
 
-        `pip install --no-cache-dir -r Traffic-Count-CCTVAL/requirements.txt`
+        1. Install requirements:
 
-        - For linux, just requirements is enough since it will auto-detect wether there is a gpu with cuda support or not
+            `pip install --no-cache-dir -r Traffic-Count-CCTVAL/requirements.txt`
+
+        
+        2. Install [pytorch](https://pytorch.org/get-started/locally/) with support for CUDA 10.2 (highest cuda version available for the Jetson nano)
+
+            `pip install torch==1.12.1+cu102 torchvision==0.13.1+cu102 torchaudio==0.12.1 --extra-index-url https://download.pytorch.org/whl/cu102`
+            
 
     5. (Windows) Install Traffic-count-cctval dependencies:
 
         1. Install requirements:
 
-            `pip install --no-cache-dir -r Traffic-Count-CCTVAL/requirements-windows.txt`
+            `pip install --no-cache-dir -r Traffic-Count-CCTVAL/requirements.txt`
 
         
         2. Install [pytorch](https://pytorch.org/get-started/locally/) (check on [pytorch](https://pytorch.org/get-started/locally/) for the right command for your system)
@@ -62,7 +68,14 @@
 
                 `pip install torch torchvision torchaudio`
 
-    6. Install torchreid:
+    6. (Linux) Install Traffic-count-cctval dependencies:
+
+        `pip install --no-cache-dir -r Traffic-Count-CCTVAL/requirements-linux.txt`
+
+        - For linux, just requirements is enough since it will auto-detect wether there is a gpu with cuda support or not
+
+
+    7. Install torchreid:
 
         `cd deep-person-reid`
 
