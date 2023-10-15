@@ -43,12 +43,12 @@
 
         1. Install requirements:
 
-            `pip install --no-cache-dir -r Traffic-Count-CCTVAL/requirements.txt`
+            `python3.8 -m pip install --no-cache-dir -r Traffic-Count-CCTVAL/requirements.txt`
 
         
         2. Install [pytorch](https://pytorch.org/get-started/locally/) with support for CUDA 10.2 (highest cuda version available for the Jetson nano)
 
-            `pip install torch==1.12.1+cu102 torchvision==0.13.1+cu102 torchaudio==0.12.1 --extra-index-url https://download.pytorch.org/whl/cu102`
+            `python3.8 -m pip install torch==1.12.1+cu102 torchvision==0.13.1+cu102 torchaudio==0.12.1 --extra-index-url https://download.pytorch.org/whl/cu102`
             
 
     5. (Windows) Install Traffic-count-cctval dependencies:
@@ -93,7 +93,7 @@
 
         `cd Traffic-Count-CCTVAL`
     
-    3. Test with one of the sample videos:
+    3. Test with one of the sample videos (change `python` for `python3.8` on the Jetson nano):
 
         `python track.py --source heavy.mp4 --save-vid --show-vid --save-txt`
 
